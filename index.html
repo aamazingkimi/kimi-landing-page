@@ -1,193 +1,117 @@
-```html                                                                                                                              
-  <!DOCTYPE html>                                                                                                                    
-  <html lang="en">                                                                                                                   
-  <head>                                                                                                                             
-      <meta charset="UTF-8">                                                                                                         
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">                                                         
-      <title>Kimi - Your AI Assistant, Pre‑configured & Ready</title>                                                                
-      <style>                                                                                                                        
-          * {                                                                                                                        
-              margin: 0;                                                                                                             
-              padding: 0;                                                                                                            
-              box-sizing: border-box;                                                                                                
-          }                                                                                                                          
-                                                                                                                                     
-          body {                                                                                                                     
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;                                        
-              background: #0a;                                                                                                       
-              color: #ffffff;                                                                                                        
-              line-height: 1.6;                                                                                                      
-              min-height: 100vh;                                                                                                     
-              display: flex;                                                                                                         
-              flex-direction: column;                                                                                                
-          }                                                                                                                          
-                                                                                                                                     
-          .container {                                                                                                               
-              max-width: 120px;                                                                                                      
-              margin: 0 auto;                                                                                                        
-              padding: 0 20px;                                                                                                       
-              flex: 1;                                                                                                               
-          }                                                                                                                          
-                                                                                                                                     
-          header {                                                                                                                   
-              padding: 30px 0;                                                                                                       
-              border-bottom: 1px solid #222;                                                                                         
-          }                                                                                                                          
-                                                                                                                                     
-          .logo {                                                                                                                    
-              font-size: 28px;                                                                                                       
-              font-weight: 700;                                                                                                      
-              color: #fff;                                                                                                           
-              text-decoration: none;                                                                                                 
-              letter-spacing: -0.5px;                                                                                                
-          }                                                                                                                          
-                                                                                                                                     
-          .hero {                                                                                                                    
-              padding: 100px 0;                                                                                                      
-              text-align: center;                                                                                                    
-          }                                                                                                                          
-                                                                                                                                     
-          .hero h1 {                                                                                                                 
-              font-size: 48px;                                                                                                       
-              font-weight: 800;                                                                                                      
-              margin-bottom: 24px;                                                                                                   
-              line-height: 1.1;                                                                                                      
-          }                                                                                                                          
-                                                                                                                                     
-          .hero p {                                                                                                                  
-              font-size: 20px;                                                                                                       
-              color: #aaa;                                                                                                           
-              max-width: 700px;                                                                                                      
-              margin: 0 auto 40px;                                                                                                   
-          }                                                                                                                          
-                                                                                                                                     
-          .cta-button {                                                                                                              
-              display: inline-block;                                                                                                 
-              background: #3b82f6;                                                                                                   
-              color: white;                                                                                                          
-              padding: 16px 40px;                                                                                                    
-              border-radius: 8px;                                                                                                    
-              text-decoration: none;                                                                                                 
-              font-weight: 600;                                                                                                      
-              font-size: 18px;                                                                                                       
-              border: none;                                                                                                          
-              cursor: pointer;                                                                                                       
-              transition: background 0.3s;                                                                                           
-          }                                                                                                                          
-                                                                                                                                     
-          .cta-button:hover {                                                                                                        
-              background: #2563eb;                                                                                                   
-          }                                                                                                                          
-                                                                                                                                     
-          .features {                                                                                                                
-              padding: 80px 0;                                                                                                       
-              text-align: center;                                                                                                    
-          }                                                                                                                          
-                                                                                                                                     
-          .features h2 {                                                                                                             
-              font-size: 36px;                                                                                                       
-              margin-bottom: 50px;                                                                                                   
-          }                                                                                                                          
-                                                                                                                                     
-          .features-grid {                                                                                                           
-              display: grid;                                                                                                         
-              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));                                                           
-              gap: 30px;                                                                                                             
-              max-width: 1000px;                                                                                                     
-              margin: 0 auto;                                                                                                        
-          }                                                                                                                          
-                                                                                                                                     
-          .feature {                                                                                                                 
-              background: #111;                                                                                                      
-              padding: 40px;                                                                                                         
-              border-radius: 12px;                                                                                                   
-              border: 1px solid #222;                                                                                                
-          }                                                                                                                          
-                                                                                                                                     
-          .feature h3 {                                                                                                              
-              font-size: 22px;                                                                                                       
-              margin-bottom: 16px;                                                                                                   
-              color: #fff;                                                                                                           
-          }                                                                                                                          
-                                                                                                                                     
-          .feature p {                                                                                                               
-              color: #999;                                                                                                           
-          }                                                                                                                          
-                                                                                                                                     
-          footer {                                                                                                                   
-              padding: 40px 0;                                                                                                       
-              border-top: 1px solid #222;                                                                                            
-              text-align: center;                                                                                                    
-              color: #666;                                                                                                           
-              font-size: 14px;                                                                                                       
-          }                                                                                                                          
-                                                                                                                                     
-          @media (max-width: 768px) {                                                                                                
-              .hero h1 {                                                                                                             
-                  font-size: 36px;                                                                                                   
-              }                                                                                                                      
-                                                                                                                                     
-              .hero p {                                                                                                              
-                  font-size: 18px;                                                                                                   
-              }                                                                                                                      
-                                                                                                                                     
-              .features h2 {                                                                                                         
-                  font-size: 28px;                                                                                                   
-              }                                                                                                                      
-                                                                                                                                     
-              .features-grid {                                                                                                       
-                  grid-template-columns: 1fr;                                                                                        
-              }                                                                                                                      
-          }                                                                                                                          
-      </style>                                                                                                                       
-  </head>                                                                                                                            
-  <body>                                                                                                                             
-      <div class="container">                                                                                                        
-          <header>                                                                                                                   
-              <a href="#" class="logo">Kimi</a>                                                                                      
-          </header>                                                                                                                  
-                                                                                                                                     
-          <section class="hero">                                                                                                     
-              <h1>Your AI Assistant, Pre‑configured & Ready</h1>                                                                     
-              <p>Stop configuring AI tools. Start using them. Get a private, fully‑set‑up AI assistant tailored to your workflow in  
-1–2 days.</p>                                                                                                                        
-              <a href="#book" class="cta-button">Book a 15‑min Walkthrough</a>                                                       
-          </section>                                                                                                                 
-                                                                                                                                     
-          <section class="features">                                                                                                 
-              <h2>What You Get</h2>                                                                                                  
-              <div class="features-grid">                                                                                            
-                  <div class="feature">                                                                                              
-                      <h3>Pre‑configured System</h3>                                                                                 
-                      <p>Ready‑to‑use AI assistant with email triage, content research, meeting prep, and customer support           
-skills.</p>                                                                                                                          
-                  </div>                                                                                                             
-                  <div class="feature">                                                                                              
-                      <h3>Private & Secure</h3>                                                                                      
-                      <p>Runs on your own cloud server (AWS/Azure). Your data stays with you, never used for training.</p>           
-                  </div>                                                                                                             
-                  <div class="feature">                                                                                              
-                      <h3>Business‑Ready</h3>                                                                                        
-                      <p>Handles operational tasks that eat your week, so you can focus on what moves the needle.</p>                
-                  </div>                                                                                                             
-              </div>                                                                                                                 
-          </section>                                                                                                                 
-      </div>                                                                                                                         
-                                                                                                                                     
-      <footer>                                                                                                                       
-          <div class="container">                                                                                                    
-              <p>© 2026 Kimi. All rights reserved.</p>                                                                               
-          </div>                                                                                                                     
-      </footer>                                                                                                                      
-                                                                                                                                     
-      <script>                                                                                                                       
-          document.querySelector('.cta-but ton').addEventListener('click', function(e) {                                             
-              e.preventDefault();                                                                                                    
-              alert('Book your walkthrough at: https://calendly.com/kimi-ai/15min');                                                 
-          });                                                                                                                        
-                                                                                                                                     
-          document.querySelector('footer p').textContent = `© ${new Date().getFullYear()} Kimi. All rights reserved.`;               
-      </script>                                                                                                                      
-  </body>                                                                                                                            
-  </html>                                                                                                                            
-```        
+    <!-- CTA -->
+    <section id="cta" class="cta">
+        <div class="container">
+            <h2>Ready to Deploy Your AI Operations Team?</h2>
+            <p class="lead">Schedule a technical walkthrough to see Kimi in action and discuss your specific requirements.</p>
+            <a href="https://calendly.com/kimi-enterprise/30min" class="cta-button" style="padding: 20px 60px; font-size: 18px;">Schedule Enterprise Demo</a>
+            <p style="margin-top: 24px; color: var(--text-secondary); font-size: 15px;">45-minute technical deep dive • No sales pitch • Infrastructure review</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#product">Pricing</a></li>
+                        <li><a href="#faq">Technical Specs</a></li>
+                        <li><a href="#cta">Demo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Compliance</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:enterprise@kimi.ai">enterprise@kimi.ai</a></li>
+                        <li><a href="#">Sales Inquiries</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Kimi AI Technologies. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p style="margin-top: 8px; font-size: 13px;">Enterprise AI Assistant Platform</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        function toggleFAQ(index) {
+            const answer = document.getElementById(`faq-${index}`);
+            const question = answer.previousElementSibling;
+            const icon = question.querySelector('span');
+            
+            answer.classList.toggle('active');
+            icon.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update copyright year
+        document.querySelector('.copyright p').textContent = `© ${new Date().getFullYear()} Kimi AI Technologies. All rights reserved. | Privacy Policy | Terms of Service`;
+        
+        // CTA button interaction
+        document.querySelectorAll('.cta-button').forEach(button => {
+            if (button.getAttribute('href') === '#cta') {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open('https://calendly.com/kimi-enterprise/30min', '_blank');
+                });
+            }
+        });
+        
+        // Header scroll effect
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.style.boxShadow = 'none';
+            } else {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
