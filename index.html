@@ -1,396 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kimi | Reads emails, drafts replies, summarizes docs</title>
-    <meta name="description" content="Kimi reads your emails, drafts replies, researches topics, prepares meeting notes, and answers customer questions. Running privately on your server.">
-    <style>
-        :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
-            --gray-800: #262626;
-            --gray-900: #171717;
-            --blue: #0066ff;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.5;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--gray-800);
-            z-index: 1000;
-            padding: 24px 0;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--white);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--gray-200);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--white);
-        }
-        
-        .cta-button {
-            background: var(--blue);
-            color: var(--white);
-            padding: 12px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .cta-button:hover {
-            background: #0052cc;
-            transform: translateY(-1px);
-        }
-        
-        /* Hero */
-        .hero {
-            padding: 200px 0 120px;
-            position: relative;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-        }
-        
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-bottom: 32px;
-        }
-        
-        .hero-subtitle {
-            font-size: 20px;
-            color: var(--gray-200);
-            max-width: 600px;
-            margin-bottom: 48px;
-            line-height: 1.6;
-        }
-        
-        /* Tasks */
-        .tasks {
-            padding: 120px 0;
-            background: var(--gray-900);
-        }
-        
-        .section-title {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 60px;
-            letter-spacing: -0.01em;
-        }
-        
-        .tasks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-        }
-        
-        .task-card {
-            background: var(--black);
-            border: 1px solid var(--gray-800);
-            border-radius: 12px;
-            padding: 40px;
-        }
-        
-        .task-icon {
-            font-size: 32px;
-            margin-bottom: 24px;
-            display: inline-block;
-        }
-        
-        .task-card h3 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--white);
-        }
-        
-        .task-card p {
-            color: var(--gray-200);
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        
-        /* How it works */
-        .how-it-works {
-            padding: 120px 0;
-        }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 48px;
-            margin-top: 60px;
-        }
-        
-        .step {
-            position: relative;
-        }
-        
-        .step-number {
-            font-size: 64px;
-            font-weight: 700;
-            color: var(--gray-800);
-            margin-bottom: 16px;
-            line-height: 1;
-        }
-        
-        .step h3 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--white);
-        }
-        
-        .step p {
-            color: var(--gray-200);
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        
-        /* Private */
-        .private {
-            padding: 120px 0;
-            background: var(--gray-900);
-        }
-        
-        .private-content {
-            max-width: 800px;
-        }
-        
-        .private h2 {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 32px;
-            letter-spacing: -0.01em;
-        }
-        
-        .private p {
-            color: var(--gray-200);
-            font-size: 20px;
-            line-height: 1.6;
-            margin-bottom: 40px;
-        }
-        
-        /* CTA */
-        .cta {
-            padding: 120px 0;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
-        }
-        
-        .cta p {
-            font-size: 20px;
-            color: var(--gray-200);
-            max-width: 600px;
-            margin: 0 auto 48px;
-            line-height: 1.6;
-        }
-        
-        /* Footer */
-        footer {
-            padding: 80px 0 40px;
-            border-top: 1px solid var(--gray-800);
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-        
-        .footer-links a {
-            color: var(--gray-200);
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--white);
-        }
-        
-        .copyright {
-            color: var(--gray-200);
-            font-size: 14px;
-            margin-top: 40px;
-            text-align: center;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 48px;
-            }
-            
-            .section-title {
-                font-size: 32px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .tasks-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .steps {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 32px;
-                text-align: center;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 16px;
-            }
-            
-            .cta h2 {
-                font-size: 36px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container header-content">
-            <a href="#" class="logo">Kimi</a>
-            <ul class="nav-links">
-                <li><a href="#tasks">What it does</a></li>
-                <li><a href="#how-it-works">How it works</a></li>
-                <li><a href="#private">Privacy</a></li>
-            </ul>
-            <a href="#cta" class="cta-button">Book a walkthrough</a>
-        </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Reads emails, drafts replies, summarizes docs</h1>
-                <p class="hero-subtitle">Kimi runs on your own server, working through your inbox and documents. No setup, no monthly fees. Ready in 48 hours.</p>
-                <a href="#cta" class="cta-button" style="padding: 16px 40px; font-size: 16px;">See it work →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tasks -->
-    <section id="tasks" class="tasks">
-        <div class="container">
-            <h2 class="section-title">What Kimi does</h2>
-            <div class="tasks-grid">
-                <div class="task-card">
-                    <div class="task-icon">📧</div>
-                    <h3>Reads your emails</h3>
-                    <p>Scans your inbox, identifies important messages, flags urgent items, and surfaces what needs your attention.</p>
-                </div>
-                <div class="task-card">
-                    <div class="task-icon">✍️</div>
-                    <h3>Drafts replies</h3>
-                    <p>Writes email responses based on your tone and context. You review and send with one click.</p>
-                </div>
-                <div class="task-card">
-                    <div class="task-icon">📄</div>
-                    <h3>Summarizes documents</h3>
                     <p>Reads PDFs, Word docs, and articles. Extracts key points, highlights action items, and saves you hours.</p>
                 </div>
                 <div class="task-card">
                     <div class="task-icon">🔍</div>
-                    <h3>Researches topics</h3>
+                    <h3>Kimi researches topics</h3>
                     <p>Searches the web, gathers information, compares options, and presents findings in clear bullet points.</p>
                 </div>
                 <div class="task-card">
                     <div class="task-icon">📅</div>
-                    <h3>Prepares meeting notes</h3>
+                    <h3>Kimi prepares meeting notes</h3>
                     <p>Joins your calls, transcribes conversations, extracts decisions, and creates follow-up task lists.</p>
                 </div>
                 <div class="task-card">
                     <div class="task-icon">💬</div>
-                    <h3>Answers customer questions</h3>
+                    <h3>Kimi answers customer questions</h3>
                     <p>Monitors support channels, responds to common inquiries, and escalates complex issues to you.</p>
                 </div>
             </div>
@@ -400,35 +22,23 @@
     <!-- How it works -->
     <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <h2 class="section-title">How it works</h2>
+            <h2 class="section-title">How Kimi works</h2>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">01</div>
-                    <h3>Book a 15‑minute walkthrough</h3>
-                    <p>We show you Kimi reading emails, drafting replies, and summarizing documents. No sales pitch—just see it work.</p>
+                    <h3>Connect your tools</h3>
+                    <p>Connect your email, documents, and communication tools. Kimi integrates with Gmail, Outlook, Google Drive, Dropbox, Slack, and more.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">02</div>
-                    <h3>We set up your private server</h3>
-                    <p>You provide AWS/Azure access (or we provision one). We install Kimi and configure it with your email, docs, and tools.</p>
+                    <h3>Kimi processes</h3>
+                    <p>Kimi reads incoming emails, analyzes documents, researches topics, and prepares responses. Everything happens automatically.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">03</div>
-                    <h3>Start delegating immediately</h3>
-                    <p>Log in to your Kimi dashboard. Forward emails, upload documents, ask questions. Kimi starts working within minutes.</p>
+                    <h3>You get results</h3>
+                    <p>Review drafted replies, read document summaries, check meeting notes, and see customer responses in your Kimi dashboard.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Private -->
-    <section id="private" class="private">
-        <div class="container">
-            <div class="private-content">
-                <h2>Your data, your server</h2>
-                <p>Kimi runs entirely on your own cloud infrastructure. Your emails, documents, and conversations never leave your control.</p>
-                <p>No data sharing. No training on your information. No third‑party access.</p>
-                <a href="#cta" class="cta-button" style="margin-top: 24px;">See how it works</a>
             </div>
         </div>
     </section>
@@ -436,10 +46,10 @@
     <!-- CTA -->
     <section id="cta" class="cta">
         <div class="container">
-            <h2>Ready to stop doing busywork?</h2>
-            <p>Book a 15‑minute walkthrough to see Kimi read emails, draft replies, and summarize documents. No commitment required.</p>
-            <a href="https://calendly.com/kimi-ai/15min" class="cta-button" style="padding: 20px 60px; font-size: 18px;">Book your walkthrough</a>
-            <p style="margin-top: 24px; color: var(--gray-200); font-size: 15px;">15 minutes • See it work with your actual emails and docs</p>
+            <h2>Ready to let Kimi handle the busywork?</h2>
+            <p>Try Kimi free for 14 days. Connect your tools and see how Kimi reads emails, drafts replies, and summarizes documents.</p>
+            <a href="https://calendly.com/kimi-ai/15min" class="cta-button" style="padding: 20px 60px; font-size: 18px;">Start free trial</a>
+            <p style="margin-top: 24px; color: var(--gray-200); font-size: 15px;">No credit card required • Cancel anytime</p>
         </div>
     </section>
 
@@ -449,10 +59,10 @@
             <div class="footer-content">
                 <a href="#" class="logo">Kimi</a>
                 <ul class="footer-links">
+                    <li><a href="#dashboard">Dashboard</a></li>
                     <li><a href="#tasks">What it does</a></li>
                     <li><a href="#how-it-works">How it works</a></li>
-                    <li><a href="#private">Privacy</a></li>
-                    <li><a href="mailto:hello@kimi.ai">Contact</a></li>
+                    <li><a href="mailto:support@kimi.ai">Support</a></li>
                 </ul>
             </div>
             <p class="copyright">© 2026 Kimi. Reads emails, drafts replies, summarizes docs.</p>
@@ -479,6 +89,14 @@
         
         // Update year
         document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} Kimi. Reads emails, drafts replies, summarizes docs.`;
+        
+        // Dashboard interaction
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>
