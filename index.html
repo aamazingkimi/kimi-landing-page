@@ -1,32 +1,3 @@
-                    <a href="#dashboard" class="btn btn-secondary">See dashboard</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dashboard -->
-    <section id="dashboard" class="dashboard-section">
-        <div class="container">
-            <div class="dashboard">
-                <div class="dashboard-header">
-                    <div class="logo" style="font-size: 18px;">Kimi Dashboard</div>
-                    <div class="dashboard-tabs">
-                        <a href="#" class="tab active">Inbox</a>
-                        <a href="#" class="tab">Documents</a>
-                        <a href="#" class="tab">Research</a>
-                        <a href="#" class="tab">Settings</a>
-                    </div>
-                </div>
-                <div class="dashboard-body">
-                    <div class="sidebar">
-                        <div class="sidebar-section">
-                            <div class="sidebar-title">Mailboxes</div>
-                            <div class="sidebar-item active">
-                                📧 Inbox (24)
-                            </div>
-                            <div class="sidebar-item">
-                                📥 Processed
-                            </div>
                             <div class="sidebar-item">
                                 📤 Drafts
                             </div>
@@ -204,7 +175,7 @@
                     <a href="mailto:support@kimi.ai">Support</a>
                 </div>
             </div>
-            <p class="copyright">© 2026 Kimi. AI that works through your inbox and docs.</p>
+            <p class="copyright">© 2026 Kimi. AI that reads emails, drafts replies, summarizes docs.</p>
         </div>
     </footer>
 
@@ -227,7 +198,7 @@
         });
         
         // Update year
-        document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} Kimi. AI that works through your inbox and docs.`;
+        document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} Kimi. AI that reads emails, drafts replies, summarizes docs.`;
         
         // Dashboard interaction
         document.querySelectorAll('.sidebar-item').forEach(item => {
