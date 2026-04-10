@@ -1,10 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimi AI | Enterprise AI Assistant Platform</title>
+    <meta name="description" content="Deploy a pre-configured, private AI operations team in 48 hours. Enterprise-grade AI assistant systems.">
+    <!-- Inline all CSS to ensure it loads -->
+    <style>
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Base Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #fff;
+        }
+        
+        .cta-button {
+            background: #0066ff;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #0052cc;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Features */
+        .features {
+            padding: 100px 0;
+            background: #111;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        
+        .feature-card p {
+            color: #888;
+        }
+        
+        /* Product */
+        .product {
+            padding: 100px 0;
+        }
+        
+        .product-card {
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .product-header {
+            padding: 50px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .product-badge {
+            display: inline-block;
+            background: rgba(0, 102, 255, 0.2);
+            color: #0066ff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .product-title {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        
+        .product-price {
+            font-size: 56px;
+            font-weight: 700;
+            color: #0066ff;
+            margin: 20px 0;
+        }
+        
+        .product-features {
+            padding: 40px 50px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li:before {
+            content: '✓';
+            color: #0066ff;
+            font-weight: bold;
+        }
+        
+        .product-cta {
+            padding: 40px 50px;
+            background: rgba(0, 102, 255, 0.1);
+            text-align: center;
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 100px 0;
+            background: #111;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 16px;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 24px;
+            background: #1a1a1a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #888;
+        }
+        
+        .faq-answer.active {
+            padding: 24px;
+            max-height: 500px;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 40px;
+            margin-bottom: 24px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid #333;
+            background: #111;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            color: #aaa;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #fff;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-header,
+            .product-features,
+            .product-cta {
+                padding: 30px;
+            }
+            
+            .product-price {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Kimi</a>
+            <ul class="nav-links">
+                <li><a href="#product">Product</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#cta" class="cta-button">Book a Demo</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Enterprise AI Assistant Platform</h1>
+            <p>Deploy a pre-configured, private AI operations team in 48 hours. Kimi delivers enterprise-grade AI assistant systems tailored to your workflow.</p>
+            <a href="#cta" class="cta-button" style="padding: 16px 40px; font-size: 18px;">Schedule Technical Walkthrough</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Built for Enterprise Workflows</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Pre-configured Deployment</h3>
+                    <p>Fully configured AI systems with enterprise skills: email triage, document analysis, meeting intelligence, and customer operations.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Private Infrastructure</h3>
+                    <p>Deploy on your AWS, Azure, or Google Cloud infrastructure. Your data remains entirely within your control.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Enterprise Integration</h3>
+                    <p>Seamless integration with your existing tools: Slack, Microsoft Teams, Salesforce, Jira, and custom APIs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product -->
+    <section id="product" class="product">
+        <div class="container">
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-badge">Enterprise Starter Package</div>
+                    <h3 class="product-title">AI Operations Platform</h3>
+                    <p>Complete AI assistant system for teams of 1-50. Deployed in 48 hours on your infrastructure.</p>
+                    <div class="product-price">$2,997</div>
+                </div>
+                <div class="product-features">
+                    <ul class="feature-list">
+                        <li>Private cloud deployment (AWS/Azure/GCP)</li>
+                        <li>5 pre-configured enterprise skills</li>
+                        <li>Email intelligence & triage system</li>
+                        <li>Document analysis & summarization</li>
+                        <li>Meeting preparation & follow-up</li>
+                        <li>Customer inquiry automation</li>
+                        <li>Team collaboration integration</li>
+                        <li>30-day implementation support</li>
+                        <li>Quarterly system updates</li>
+                        <li>Dedicated technical account manager</li>
+                    </ul>
+                </div>
+                <div class="product-cta">
+                    <a href="#cta" class="cta-button" style="padding: 18px 48px; font-size: 18px;">Get Started with Implementation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(0)">
+                        What is the implementation timeline?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-0">
+                        Standard deployment takes 48 hours from infrastructure access. Enterprise deployments with custom integrations typically require 3-5 business days.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(1)">
+                        What infrastructure requirements are needed?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-1">
+                        Minimum: 4 vCPUs, 8GB RAM, 50GB storage on AWS (t3.xlarge), Azure (D4s v3), or GCP (n2-standard-4).
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(2)">
+                        How is data privacy maintained?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-2">
+                        All data processing occurs within your cloud infrastructure. No data leaves your environment. We never access or store your data.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section id="cta" class="cta">
         <div class="container">
             <h2>Ready to Deploy Your AI Operations Team?</h2>
-            <p class="lead">Schedule a technical walkthrough to see Kimi in action and discuss your specific requirements.</p>
+            <p>Schedule a technical walkthrough to see Kimi in action and discuss your specific requirements.</p>
             <a href="https://calendly.com/kimi-enterprise/30min" class="cta-button" style="padding: 20px 60px; font-size: 18px;">Schedule Enterprise Demo</a>
-            <p style="margin-top: 24px; color: var(--text-secondary); font-size: 15px;">45-minute technical deep dive • No sales pitch • Infrastructure review</p>
         </div>
     </section>
 
@@ -50,8 +515,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>© 2026 Kimi AI Technologies. All rights reserved. | Privacy Policy | Terms of Service</p>
-                <p style="margin-top: 8px; font-size: 13px;">Enterprise AI Assistant Platform</p>
+                <p>© 2026 Kimi AI Technologies. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -60,16 +524,15 @@
         // FAQ Toggle
         function toggleFAQ(index) {
             const answer = document.getElementById(`faq-${index}`);
-            const question = answer.previousElementSibling;
-            const icon = question.querySelector('span');
+            const icon = answer.previousElementSibling.querySelector('span');
             
             answer.classList.toggle('active');
             icon.textContent = answer.classList.contains('active') ? '−' : '+';
         }
         
-        // Smooth scroll for navigation
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
@@ -84,34 +547,8 @@
             });
         });
         
-        // Update copyright year
-        document.querySelector('.copyright p').textContent = `© ${new Date().getFullYear()} Kimi AI Technologies. All rights reserved. | Privacy Policy | Terms of Service`;
-        
-        // CTA button interaction
-        document.querySelectorAll('.cta-button').forEach(button => {
-            if (button.getAttribute('href') === '#cta') {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.open('https://calendly.com/kimi-enterprise/30min', '_blank');
-                });
-            }
-        });
-        
-        // Header scroll effect
-        let lastScroll = 0;
-        const header = document.querySelector('header');
-        
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll <= 0) {
-                header.style.boxShadow = 'none';
-            } else {
-                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
-            }
-            
-            lastScroll = currentScroll;
-        });
+        // Update year
+        document.querySelector('.copyright p').textContent = `© ${new Date().getFullYear()} Kimi AI Technologies. All rights reserved.`;
     </script>
 </body>
 </html>
