@@ -1,90 +1,13 @@
-                <p class="section-subtitle">Connect your tools. Kimi processes. You get results.</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">01</div>
-                    <h3>Connect your tools</h3>
-                    <p>Connect your email, documents, and communication tools. Kimi integrates with Gmail, Outlook, Google Drive, Dropbox, Slack, and more.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">02</div>
-                    <h3>Kimi processes</h3>
-                    <p>Kimi reads incoming emails, analyzes documents, researches topics, and prepares responses. Everything happens automatically.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">03</div>
-                    <h3>You get results</h3>
-                    <p>Review drafted replies, read document summaries, check meeting notes, and see customer responses in your Kimi dashboard.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section id="cta" class="cta">
-        <div class="container">
-            <div class="cta-inner">
-                <h2>Ready to let Kimi handle the busywork?</h2>
-                <p>Try Kimi free for 14 days. Connect your tools and see how Kimi reads emails, drafts replies, and summarizes documents.</p>
-                <a href="https://calendly.com/kimi-ai/15min" class="btn">Start free trial →</a>
-                <p style="margin-top: 20px; color: #aaa; font-size: 14px;">No credit card required • Cancel anytime</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <a href="#" class="logo">Kimi</a>
-                <div class="footer-nav">
-                    <a href="#dashboard">Dashboard</a>
-                    <a href="#features">Features</a>
-                    <a href="#how-it-works">How it works</a>
-                    <a href="mailto:support@kimi.ai">Support</a>
-                </div>
-            </div>
-            <p class="copyright">© 2026 Kimi. AI that reads emails, drafts replies, summarizes docs.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Update year
-        document.querySelector('.copyright').textContent = `© ${new Date().getFullYear()} Kimi. AI that reads emails, drafts replies, summarizes docs.`;
-        
-        // Dashboard interaction
-        document.querySelectorAll('.sidebar-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
-        // Dashboard tabs
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kimi | AI for busy founders</title>
+    <meta name="description" content="Kimi reads emails, drafts replies, summarizes docs. Automate your busywork." />
+  </head>
+  <body class="bg-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
