@@ -1,19 +1,60 @@
-import React from 'react';
-
 type ImageCardProps = {
   src: string;
   alt: string;
   className?: string;
 };
 
-export default function KimiLanding() {
-  const base = '/kimi-landing-page/';
+export default function ALittleLanding() {
+  const base =
+    typeof import.meta !== 'undefined' && import.meta.env?.BASE_URL
+      ? import.meta.env.BASE_URL
+      : '/kimi-landing-page/';
+
+  const imageData = {
+    img1: `${base}books/IMG_2644.jpg`,
+    img2: `${base}books/IMG_2650.jpg`,
+    img3: `${base}books/IMG_2651.jpg`,
+    img4: `${base}books/IMG_2645.jpg`,
+    img5: `${base}books/IMG_2685.jpg`,
+    img6: `${base}books/IMG_2646.jpg`,
+    img7: `${base}books/IMG_2647.jpg`,
+    img8: `${base}books/IMG_2648.jpg`,
+    img9: `${base}books/IMG_2649.jpg`,
+    img10: `${base}books/IMG_2659.jpg`,
+    img11: `${base}books/IMG_2686.jpg`,
+    img12: `${base}books/IMG_2663.PNG`,
+    img13: `${base}books/IMG_2641.jpg`,
+    img14: `${base}books/IMG_2642.jpg`,
+    img15: `${base}books/IMG_2643.jpg`,
+  };
+
+  const books = [
+    { title: 'A Little… Missing You', subtitle: 'On longing and distance', img: imageData.img1 },
+    { title: 'A Little… Let Go', subtitle: 'On release and acceptance', img: imageData.img2 },
+    { title: 'A Little… Still Here', subtitle: 'On presence and quiet support', img: imageData.img3 },
+    { title: 'A Little… Not Said', subtitle: 'On unspoken words', img: imageData.img4 },
+    { title: 'A Little… Healing', subtitle: 'On slowly becoming whole again', img: imageData.img5 },
+    { title: 'A Little… Goodbye', subtitle: 'On endings and closure', img: imageData.img6 },
+  ];
+
+  const reviews = [
+    'Each mini book feels like someone finally said what I could never put into words.',
+    'It doesn’t feel like a product. It feels like something that shows up exactly when you need it.',
+    'We open and read them together. It’s more meaningful than any gift we’ve ever given.',
+  ];
+
+  const trustItems = [
+    'Handcrafted mini books',
+    'Worldwide delivery',
+    'Curated emotional themes',
+    'Cancel anytime',
+  ];
 
   const ImageCard = ({ src, alt, className = '' }: ImageCardProps) => (
     <img
       src={src}
       alt={alt}
-      className={`w-full object-cover bg-gray-100 ${className}`}
+      className={`w-full object-cover bg-[#ece6de] ${className}`}
       loading="lazy"
       onError={(e) => {
         const target = e.currentTarget;
@@ -22,8 +63,9 @@ export default function KimiLanding() {
         if (parent && !parent.querySelector('[data-fallback]')) {
           const fallback = document.createElement('div');
           fallback.setAttribute('data-fallback', 'true');
-          fallback.className = 'absolute inset-0 flex items-center justify-center text-sm text-gray-500';
-          fallback.textContent = 'Image placeholder';
+          fallback.className =
+            'absolute inset-0 flex items-center justify-center text-sm text-[#8f7b6d]';
+          fallback.textContent = 'Image not found';
           parent.appendChild(fallback);
           parent.classList.add('relative');
         }
@@ -31,249 +73,143 @@ export default function KimiLanding() {
     />
   );
 
-  const features = [
-    {
-      icon: '📧',
-      title: 'Reads your emails',
-      description: 'Kimi scans your inbox, identifies important messages, flags urgent items, and surfaces what needs your attention.'
-    },
-    {
-      icon: '✍️',
-      title: 'Drafts replies',
-      description: 'Kimi writes email responses based on your tone and context. You review and send with one click.'
-    },
-    {
-      icon: '📄',
-      title: 'Summarizes documents',
-      description: 'Kimi reads PDFs, Word docs, and articles. Extracts key points, highlights action items, and saves you hours.'
-    },
-    {
-      icon: '🔍',
-      title: 'Researches topics',
-      description: 'Kimi searches the web, gathers information, compares options, and presents findings in clear bullet points.'
-    },
-    {
-      icon: '📅',
-      title: 'Prepares meeting notes',
-      description: 'Kimi joins your calls, transcribes conversations, extracts decisions, and creates follow-up task lists.'
-    },
-    {
-      icon: '💬',
-      title: 'Answers questions',
-      description: 'Kimi monitors support channels, responds to common inquiries, and escalates complex issues to you.'
-    }
-  ];
-
-  const steps = [
-    {
-      number: '01',
-      title: 'Connect your tools',
-      description: 'Connect your email, documents, and communication tools. Kimi integrates with Gmail, Outlook, Google Drive, Dropbox, Slack, and more.'
-    },
-    {
-      number: '02',
-      title: 'Kimi processes',
-      description: 'Kimi reads incoming emails, analyzes documents, researches topics, and prepares responses. Everything happens automatically.'
-    },
-    {
-      number: '03',
-      title: 'You get results',
-      description: 'Review drafted replies, read document summaries, check meeting notes, and see customer responses in your Kimi dashboard.'
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-white text-black">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur">
+    <div className="min-h-screen bg-[#f7f1e8] text-[#2d1f1a]">
+      <header className="sticky top-0 z-50 border-b border-[#e2d6c6] bg-[#f7f1e8]/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div className="text-xl font-bold">Kimi</div>
+          <div className="text-lg font-semibold tracking-[0.2em] uppercase">A Little…</div>
           <nav className="hidden gap-8 text-sm md:flex">
-            <a href="#dashboard" className="text-gray-600 hover:text-black">Dashboard</a>
-            <a href="#features" className="text-gray-600 hover:text-black">Features</a>
-            <a href="#how-it-works" className="text-gray-600 hover:text-black">How it works</a>
+            <a href="#books" className="hover:opacity-70">Books</a>
+            <a href="#how" className="hover:opacity-70">How it works</a>
+            <a href="#reviews" className="hover:opacity-70">Voices</a>
+            <a href="#about" className="hover:opacity-70">About</a>
           </nav>
-          <button className="rounded-lg bg-black px-4 py-2 text-sm text-white hover:bg-gray-800">
-            Try Kimi
+          <button className="rounded-full border border-[#2d1f1a] px-4 py-2 text-sm transition hover:bg-[#2d1f1a] hover:text-white">
+            Subscribe
           </button>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold leading-tight md:text-7xl">
-            AI that reads emails, drafts replies, summarizes docs
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-xl text-gray-600">
-            Kimi automates email, research, and document work. Connect your tools and let Kimi handle the busywork.
-          </p>
-          <div className="mt-10">
-            <button className="rounded-lg bg-black px-8 py-3 text-lg text-white hover:bg-gray-800">
-              Start free trial →
-            </button>
-          </div>
+      <section className="border-b border-[#e2d6c6] bg-[#f1e6da]">
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 py-4 text-center text-sm md:grid-cols-4">
+          {trustItems.map((item) => (
+            <div key={item}>{item}</div>
+          ))}
         </div>
       </section>
 
-      {/* Dashboard Preview */}
-      <section id="dashboard" className="mx-auto max-w-6xl px-6 py-20">
-        <div className="rounded-2xl border border-gray-200 bg-white shadow-xl">
-          <div className="border-b border-gray-200 bg-gray-50 px-8 py-4">
-            <div className="flex items-center justify-between">
-              <div className="font-medium">Kimi Dashboard</div>
-              <div className="flex gap-6 text-sm">
-                <a href="#" className="font-medium text-black">Inbox</a>
-                <a href="#" className="text-gray-600">Documents</a>
-                <a href="#" className="text-gray-600">Research</a>
-                <a href="#" className="text-gray-600">Settings</a>
-              </div>
+      <main>
+        <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 md:grid-cols-2">
+          <div>
+            <p className="mb-4 text-xs uppercase tracking-[0.3em] text-[#9b7b6a]">
+              Emotional Micro Art Subscription
+            </p>
+            <h1 className="max-w-xl text-5xl leading-tight md:text-7xl">
+              A Little… something you didn’t know you needed.
+            </h1>
+            <p className="mt-6 max-w-lg text-lg leading-8 text-[#6e5a4f]">
+              Every two weeks, a mini book arrives. Not information — emotion. Not explanation —
+              presence.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <button className="rounded-full bg-[#2d1f1a] px-6 py-3 text-white">
+                Explore Books
+              </button>
+              <button className="rounded-full border border-[#2d1f1a] px-6 py-3 transition hover:bg-[#2d1f1a] hover:text-white">
+                How it Works
+              </button>
             </div>
           </div>
-          <div className="grid md:grid-cols-4">
-            {/* Sidebar */}
-            <div className="border-r border-gray-200 bg-gray-50 p-6">
-              <div className="mb-8">
-                <div className="mb-2 text-xs font-medium uppercase text-gray-500">Mailboxes</div>
-                <div className="space-y-1">
-                  <div className="rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium">📧 Inbox (24)</div>
-                  <div className="rounded-lg px-3 py-2 text-sm text-gray-600">📥 Processed</div>
-                  <div className="rounded-lg px-3 py-2 text-sm text-gray-600">📤 Drafts</div>
-                </div>
-              </div>
-              <div>
-                <div className="mb-2 text-xs font-medium uppercase text-gray-500">Integrations</div>
-                <div className="space-y-1">
-                  <div className="rounded-lg px-3 py-2 text-sm text-gray-600">📧 Gmail</div>
-                  <div className="rounded-lg px-3 py-2 text-sm text-gray-600">📁 Google Drive</div>
-                  <div className="rounded-lg px-3 py-2 text-sm text-gray-600">💬 Slack</div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Main Content */}
-            <div className="col-span-3 p-8">
-              <div className="space-y-4">
-                {/* Email 1 */}
-                <div className="flex items-center gap-4 rounded-lg border border-gray-200 p-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white font-medium">
-                    JS
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <div className="font-medium">Jane Smith</div>
-                      <div className="text-sm text-gray-500">2 min ago</div>
-                    </div>
-                    <div className="text-sm text-gray-700">Meeting notes from Tuesday</div>
-                    <div className="text-sm text-gray-500">Here are the notes from our product review. The key decisions were...</div>
-                  </div>
-                </div>
-                
-                {/* Email 2 */}
-                <div className="flex items-center gap-4 rounded-lg border border-gray-200 p-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white font-medium">
-                    AR
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <div className="font-medium">Alex Rivera</div>
-                      <div className="text-sm text-gray-500">15 min ago</div>
-                    </div>
-                    <div className="text-sm text-gray-700">Project update and next steps</div>
-                    <div className="text-sm text-gray-500">The development is on track. We need your input on the design phase...</div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* AI Suggestion */}
-              <div className="mt-8 rounded-lg border border-blue-100 bg-blue-50 p-6">
-                <div className="mb-3 flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-                    🤖
-                  </div>
-                  <div className="font-medium">Kimi's reply suggestion</div>
-                </div>
-                <div className="text-gray-700">
-                  "Thanks for sending the notes. I've reviewed the action items and will follow up on points 3 and 4. Let's schedule a brief sync for next week to discuss implementation."
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Features */}
-      <section id="features" className="bg-gray-50 py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold">What Kimi does</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-              Kimi handles the work that eats your week, so you can focus on what matters.
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="overflow-hidden rounded-3xl bg-[#ece6de]">
+              <ImageCard src={imageData.img7} alt="Mini book detail" className="aspect-[4/5]" />
+            </div>
+            <div className="mt-8 overflow-hidden rounded-3xl bg-[#ece6de]">
+              <ImageCard src={imageData.img8} alt="Mini book detail" className="aspect-[4/5]" />
+            </div>
+          </div>
+        </section>
+
+        <section id="how" className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 md:grid-cols-2">
+          <div className="overflow-hidden rounded-[2rem] bg-[#ece6de]">
+            <ImageCard src={imageData.img3} alt="Mini book opened in hand" className="aspect-[5/4]" />
+          </div>
+          <div>
+            <h2 className="text-3xl md:text-5xl">It arrives quietly.</h2>
+            <p className="mt-5 text-lg leading-8 text-[#6e5a4f]">
+              You’re not subscribing to content. You’re subscribing to a rhythm — one mini book,
+              every two weeks, from a carefully built emotional world.
             </p>
           </div>
-          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
-              <div key={index} className="rounded-2xl border border-gray-200 bg-white p-8 hover:border-gray-300 hover:shadow-lg">
-                <div className="mb-6 text-3xl">{feature.icon}</div>
-                <h3 className="text-xl font-semibold">{feature.title}</h3>
-                <p className="mt-3 text-gray-600">{feature.description}</p>
-              </div>
+        </section>
+
+        <section id="books" className="mx-auto max-w-7xl px-6 py-20">
+          <div className="mb-10">
+            <p className="text-xs uppercase tracking-[0.3em] text-[#9b7b6a]">Collection</p>
+            <h2 className="mt-3 text-3xl md:text-5xl">A Little… Books</h2>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {books.map((item) => (
+              <article
+                key={item.title}
+                className="overflow-hidden rounded-[2rem] border border-[#e2d6c6] bg-white/50"
+              >
+                <div className="overflow-hidden rounded-t-[2rem] bg-[#ece6de]">
+                  <ImageCard src={item.img} alt={item.title} className="aspect-[4/5]" />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl">{item.title}</h3>
+                  <p className="mt-2 text-[#6e5a4f]">{item.subtitle}</p>
+                </div>
+              </article>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold">How Kimi works</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-              Connect your tools. Kimi processes. You get results.
-            </p>
-          </div>
-          <div className="mt-16 grid gap-12 md:grid-cols-3">
-            {steps.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="mb-6 text-6xl font-bold text-gray-200">{step.number}</div>
-                <h3 className="text-2xl font-semibold">{step.title}</h3>
-                <p className="mt-4 text-gray-600">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-black py-20 text-white">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-4xl font-bold">Ready to let Kimi handle the busywork?</h2>
-          <p className="mx-auto mt-6 max-w-2xl text-gray-300">
-            Try Kimi free for 14 days. Connect your tools and see how Kimi reads emails, drafts replies, and summarizes documents.
-          </p>
-          <button className="mt-10 rounded-lg bg-white px-8 py-3 text-lg text-black hover:bg-gray-100">
-            Start free trial →
-          </button>
-          <p className="mt-6 text-sm text-gray-400">No credit card required • Cancel anytime</p>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-200 py-12">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="flex flex-col items-center justify-between md:flex-row">
-            <div className="text-xl font-bold">Kimi</div>
-            <div className="mt-6 flex gap-8 md:mt-0">
-              <a href="#dashboard" className="text-gray-600 hover:text-black">Dashboard</a>
-              <a href="#features" className="text-gray-600 hover:text-black">Features</a>
-              <a href="#how-it-works" className="text-gray-600 hover:text-black">How it works</a>
-              <a href="mailto:support@kimi.ai" className="text-gray-600 hover:text-black">Support</a>
+        <section id="reviews" className="bg-[#f1e6da] py-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="mb-10 text-3xl md:text-5xl">What they felt</h2>
+            <div className="grid gap-6 lg:grid-cols-3">
+              {reviews.map((review, i) => (
+                <div key={i} className="rounded-[2rem] bg-[#f7f1e8] p-8">
+                  <p className="text-lg">“{review}”</p>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500">
-            © 2026 Kimi. AI that reads emails, drafts replies, summarizes docs.
+        </section>
+
+        <section id="about" className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 md:grid-cols-2">
+          <div className="overflow-hidden rounded-[2rem] bg-[#ece6de]">
+            <ImageCard src={imageData.img4} alt="Mini book scene" className="aspect-[4/5]" />
           </div>
-        </div>
+          <div>
+            <h2 className="text-3xl md:text-5xl">A small emotional universe.</h2>
+            <p className="mt-6 text-lg leading-8 text-[#6e5a4f]">
+              Each mini book captures a small, honest moment — something you felt but never said
+              out loud.
+            </p>
+          </div>
+        </section>
+
+        <section className="border-y border-[#e2d6c6] py-20 text-center">
+          <h2 className="text-3xl md:text-5xl">Stay close.</h2>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <input
+              type="email"
+              placeholder="Email"
+              aria-label="Email"
+              className="h-12 rounded-full border border-[#d8cdbd] bg-transparent px-4"
+            />
+            <button className="h-12 rounded-full bg-[#2d1f1a] px-6 text-white">Join</button>
+          </div>
+        </section>
+      </main>
+
+      <footer className="py-10 text-center text-sm text-[#6e5a4f]">
+        A Little… Emotional Micro Art Subscription
       </footer>
     </div>
   );
