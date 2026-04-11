@@ -4,162 +4,472 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Little… Emotional Micro Art Subscription</title>
+    <meta name="description" content="Handcrafted mini books that hold quiet feelings. Every two weeks, a mini book arrives.">
     <style>
+        /* Reset & Base */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f7f1e8;
-            color: #2d1f1a;
+        html { scroll-behavior: smooth; }
+        
+        /* Colors */
+        :root {
+            --bg: #f7f1e8;
+            --text: #2d1f1a;
+            --accent: #9b7b6a;
+            --light: #f1e6da;
+            --border: #e2d6c6;
+            --white: #ffffff;
+        }
+        
+        /* Typography */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-            padding: 40px 20px;
+        }
+        
+        /* Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            z-index: 100;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        nav { display: flex; gap: 32px; }
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        nav a:hover { opacity: 0.7; }
+        .subscribe-btn {
+            background: transparent;
+            border: 1px solid var(--text);
+            color: var(--text);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .subscribe-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+        
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--light);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+        .trust-items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
             text-align: center;
+            font-size: 14px;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0;
         }
-        h1 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #2d1f1a;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
         }
-        .subtitle {
+        .hero-content h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        .hero-subtitle {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .hero-description {
             font-size: 18px;
             color: #6e5a4f;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: 1px solid var(--text);
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn-secondary:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+        .hero-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .image-placeholder {
+            background: #ece6de;
+            border-radius: 24px;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8f7b6d;
+            font-size: 14px;
+        }
+        .image-placeholder:nth-child(2) {
+            margin-top: 32px;
+        }
+        
+        /* Section Common */
+        section { padding: 80px 0; }
+        .section-title {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        .section-subtitle {
+            font-size: 18px;
+            color: #6e5a4f;
             max-width: 600px;
+        }
+        
+        /* How it Works */
+        .how-it-works {
+            background: var(--light);
+        }
+        .how-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+        
+        /* Books */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .book-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            overflow: hidden;
+        }
+        .book-image {
+            background: #ece6de;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8f7b6d;
+        }
+        .book-content {
+            padding: 24px;
+        }
+        .book-title {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .book-subtitle {
+            color: #6e5a4f;
+            font-size: 16px;
+        }
+        
+        /* Reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .review-card {
+            background: var(--bg);
+            border-radius: 32px;
+            padding: 32px;
+        }
+        .review-text {
+            font-size: 18px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            padding: 80px 0;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
         }
-        .status {
-            background: #f1e6da;
-            border: 1px solid #e2d6c6;
-            border-radius: 12px;
-            padding: 30px;
-            margin: 40px 0;
-        }
-        .status h2 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #2d1f1a;
-        }
-        .status p {
-            color: #6e5a4f;
-            margin-bottom: 10px;
-        }
-        .checklist {
-            text-align: left;
-            max-width: 500px;
-            margin: 30px auto;
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid #e2d6c6;
-        }
-        .checklist h3 {
-            margin-bottom: 15px;
-            color: #2d1f1a;
-        }
-        .checklist ul {
-            list-style: none;
-        }
-        .checklist li {
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            align-items: center;
-        }
-        .checklist li:last-child {
-            border-bottom: none;
-        }
-        .checklist .icon {
-            margin-right: 10px;
-            font-size: 18px;
-        }
-        .checklist .done { color: #10b981; }
-        .checklist .pending { color: #f59e0b; }
-        .checklist .error { color: #ef4444; }
-        .refresh-btn {
-            display: inline-block;
-            background: #2d1f1a;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 20px;
-            border: none;
-            cursor: pointer;
+        .newsletter-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            background: transparent;
             font-size: 16px;
         }
-        .refresh-btn:hover {
-            background: #1a130f;
+        .newsletter-btn {
+            background: var(--text);
+            color: var(--bg);
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
         }
-        .note {
-            margin-top: 30px;
-            padding: 15px;
-            background: #f8f8f8;
-            border-radius: 8px;
-            color: #666;
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #6e5a4f;
             font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-grid, .how-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 48px; }
+            .trust-items { grid-template-columns: repeat(2, 1fr); }
+            .books-grid, .reviews-grid { grid-template-columns: 1fr; }
+            nav { display: none; }
+            .hero-images { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>A Little…</h1>
-        <p class="subtitle">Emotional Micro Art Subscription. Handcrafted mini books that hold quiet feelings.</p>
-        
-        <div class="status">
-            <h2>🚀 Website is Building</h2>
-            <p>Your Vite + React + Tailwind site is currently being deployed to GitHub Pages.</p>
-            <p>This usually takes 1-2 minutes.</p>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">A Little…</div>
+                <nav>
+                    <a href="#books">Books</a>
+                    <a href="#how">How it works</a>
+                    <a href="#reviews">Voices</a>
+                    <a href="#about">About</a>
+                </nav>
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
         </div>
-        
-        <div class="checklist">
-            <h3>Deployment Status</h3>
-            <ul>
-                <li><span class="icon done">✅</span> Project structure created</li>
-                <li><span class="icon done">✅</span> Code pushed to GitHub</li>
-                <li><span class="icon done">✅</span> GitHub Pages enabled</li>
-                <li><span class="icon pending">⏳</span> Building React application</li>
-                <li><span class="icon pending">⏳</span> Deploying to CDN</li>
-            </ul>
+    </header>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="container">
+            <div class="trust-items">
+                <div>Handcrafted mini books</div>
+                <div>Worldwide delivery</div>
+                <div>Curated emotional themes</div>
+                <div>Cancel anytime</div>
+            </div>
         </div>
-        
-        <button class="refresh-btn" onclick="window.location.reload()">🔄 Refresh Page</button>
-        
-        <div class="note">
-            <p><strong>Note:</strong> If you still see this page after 5 minutes:</p>
-            <p>1. Check GitHub Actions: https://github.com/aamazingkimi/kimi-landing-page/actions</p>
-            <p>2. Clear browser cache (Cmd+Shift+R on Mac)</p>
-            <p>3. Wait a few more minutes for CDN propagation</p>
+    </section>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-subtitle">Emotional Micro Art Subscription</div>
+                    <h1>A Little… something you didn't know you needed.</h1>
+                    <p class="hero-description">
+                        Every two weeks, a mini book arrives. Not information — emotion. Not explanation — presence.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary">Explore Books</button>
+                        <button class="btn-secondary">How it Works</button>
+                    </div>
+                </div>
+                <div class="hero-images">
+                    <div class="image-placeholder">Mini book detail</div>
+                    <div class="image-placeholder">Mini book detail</div>
+                </div>
+            </div>
         </div>
-    </div>
-    
+    </section>
+
+    <!-- How it Works -->
+    <section id="how" class="how-it-works">
+        <div class="container">
+            <div class="how-grid">
+                <div class="image-placeholder" style="aspect-ratio: 5/4;">Mini book opened in hand</div>
+                <div>
+                    <h2 class="section-title">It arrives quietly.</h2>
+                    <p class="section-subtitle">
+                        You're not subscribing to content. You're subscribing to a rhythm — one mini book,
+                        every two weeks, from a carefully built emotional world.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books -->
+    <section id="books">
+        <div class="container">
+            <div class="hero-subtitle">Collection</div>
+            <h2 class="section-title">A Little… Books</h2>
+            <div class="books-grid">
+                <div class="book-card">
+                    <div class="book-image">Missing You</div>
+                    <div class="book-content">
+                        <h3 class="book-title">A Little… Missing You</h3>
+                        <p class="book-subtitle">On longing and distance</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-image">Let Go</div>
+                    <div class="book-content">
+                        <h3 class="book-title">A Little… Let Go</h3>
+                        <p class="book-subtitle">On release and acceptance</p>
+                    </div>
+                </div>
+                <div class="book-card">
+                    <div class="book-image">Still Here</div>
+                    <div class="book-content">
+                        <h3 class="book-title">A Little… Still Here</h3>
+                        <p class="book-subtitle">On presence and quiet support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">What they felt</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <p class="review-text">"Each mini book feels like someone finally said what I could never put into words."</p>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"It doesn't feel like a product. It feels like something that shows up exactly when you need it."</p>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"We open and read them together. It's more meaningful than any gift we've ever given."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="how-grid">
+                <div>
+                    <h2 class="section-title">A small emotional universe.</h2>
+                    <p class="section-subtitle">
+                        Each mini book captures a small, honest moment — something you felt but never said
+                        out loud.
+                    </p>
+                </div>
+                <div class="image-placeholder" style="aspect-ratio: 4/5;">Mini book scene</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="section-title">Stay close.</h2>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Email" class="newsletter-input">
+                <button class="newsletter-btn">Join</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            A Little… Emotional Micro Art Subscription
+        </div>
+    </footer>
+
     <script>
-        // Auto-refresh every 30 seconds
-        setTimeout(() => {
-            window.location.reload();
-        }, 30000);
-        
-        // Check if the real app is loaded
-        fetch('/kimi-landing-page/')
-            .then(response => {
-                if (response.ok) {
-                    // Check if it's not this placeholder page
-                    response.text().then(text => {
-                        if (!text.includes('Website is Building')) {
-                            console.log('Real app detected, redirecting...');
-                            window.location.reload();
-                        }
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
                     });
                 }
-            })
-            .catch(() => {
-                // Ignore errors
             });
+        });
+
+        // Update year
+        document.querySelector('footer').innerHTML = `© ${new Date().getFullYear()} A Little… Emotional Micro Art Subscription`;
+
+        // Simple form handling
+        document.querySelector('.newsletter-btn').addEventListener('click', function() {
+            const email = document.querySelector('.newsletter-input').value;
+            if (email && email.includes('@')) {
+                alert('Thank you! We\'ll be in touch soon.');
+                document.querySelector('.newsletter-input').value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
     </script>
 </body>
 </html>
